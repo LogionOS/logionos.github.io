@@ -1,0 +1,14 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" rx="24" fill="#000000"/>
+  
+  <!-- Four curved blades forming vortex/spiral -->
+  <path d="M100 60 C100 60, 75 70, 65 100 C55 130, 70 155, 100 155" 
+        stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M140 100 C140 100, 130 75, 100 65 C70 55, 45 70, 45 100" 
+        stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M100 140 C100 140, 125 130, 135 100 C145 70, 130 45, 100 45" 
+        stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M60 100 C60 100, 70 125, 100 135 C130 145, 155 130, 155 100" 
+        stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+</svg>

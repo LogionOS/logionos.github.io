@@ -1,0 +1,10 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="70" stroke="white" stroke-width="3"/>
+  
+  <!-- Four curved elements creating spiral/rotation effect -->
+  <path d="M100 40 C70 40, 40 70, 40 100" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M160 100 C160 70, 130 40, 100 40" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M100 160 C130 160, 160 130, 160 100" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M40 100 C40 130, 70 160, 100 160" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+</svg>
