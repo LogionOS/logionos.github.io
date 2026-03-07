@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogionOS — AI Compliance Operating System</title>
-    <meta name="description" content="The compliance layer between AI and the real world. 2,000+ regulations across 5 jurisdictions, real-time enforcement, enterprise policy engine. Python & JavaScript SDKs.">
+    <meta name="description" content="Ship AI to regulated industries. 2,000+ regulations, 5 jurisdictions, real-time enforcement. API, Chrome Extension, and Enterprise Dashboard.">
     <meta property="og:title" content="LogionOS — AI Compliance OS">
-    <meta property="og:description" content="Ship AI to regulated industries. We handle compliance.">
+    <meta property="og:description" content="Ship AI to regulated industries. We handle compliance. API + Chrome Extension + Enterprise Dashboard.">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,12 +30,13 @@
                 LogionOS
             </a>
             <ul class="nav-links" id="nav-links">
+                <li><a href="#products">Products</a></li>
                 <li><a href="#platform">Platform</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#developers">Developers</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="docs.html">Docs</a></li>
-                <li><a href="https://logionos-compliance-engine.streamlit.app/" target="_blank" class="nav-cta">Try Demo</a></li>
+                <li><a href="https://logionos-dashboard.vercel.app" target="_blank" class="nav-cta">Dashboard</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -46,15 +47,15 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-badge">AI Compliance OS &middot; Now Available</div>
-            <h1>The compliance layer<br>between AI and<br>the real world.</h1>
-            <p>2,000+ compiled regulations across US, EU, Japan, UK, and Singapore. Real-time enforcement that checks every AI request — and every AI response — before they reach your users.</p>
+            <div class="hero-badge">AI Compliance OS &middot; API + Extension + Dashboard</div>
+            <h1>Ship AI to<br>regulated industries.<br>We handle compliance.</h1>
+            <p>2,000+ compiled regulations across US, EU, Japan, UK, and Singapore. One API for backend integration, a Chrome Extension for real-time AI monitoring, and an Enterprise Dashboard for full compliance visibility.</p>
             <div class="hero-actions">
-                <a href="https://logionos-compliance-engine.streamlit.app/" target="_blank" class="btn-primary">
-                    Try Live Demo
+                <a href="https://logionos-dashboard.vercel.app" target="_blank" class="btn-primary">
+                    Open Dashboard
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                 </a>
-                <a href="docs.html" class="btn-secondary">Read the Docs &rarr;</a>
+                <a href="https://logionos-compliance-engine.streamlit.app/" target="_blank" class="btn-secondary">Try Live Demo &rarr;</a>
             </div>
         </div>
     </section>
@@ -78,23 +79,78 @@
             </div>
             <div class="metric-divider"></div>
             <div class="metric">
-                <span class="metric-value">2 SDKs</span>
-                <span class="metric-label">Python &amp; JavaScript</span>
+                <span class="metric-value">3</span>
+                <span class="metric-label">Products</span>
             </div>
             <div class="metric-divider"></div>
             <div class="metric">
-                <span class="metric-value">15+</span>
-                <span class="metric-label">API Endpoints</span>
+                <span class="metric-value">3</span>
+                <span class="metric-label">AI Platforms</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Suite -->
+    <section id="products" class="section">
+        <div class="section-container">
+            <div class="section-header center">
+                <span class="section-label">Products</span>
+                <h2>Three products. Complete coverage.</h2>
+                <p class="section-subtitle">From backend integration to browser-level monitoring to executive-level visibility &mdash; LogionOS covers every layer of your AI compliance stack.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon blue">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <div class="product-label">Compliance API</div>
+                    <h3>Infrastructure for any AI application</h3>
+                    <ul class="product-features">
+                        <li>Input &amp; output compliance scanning</li>
+                        <li>2,000+ regulations across 5 jurisdictions</li>
+                        <li>PII detection, RBAC, policy engine</li>
+                        <li>Webhook alerts, audit export, analytics</li>
+                    </ul>
+                    <a href="docs.html" class="product-cta">View API Docs &rarr;</a>
+                </div>
+                <div class="product-card featured">
+                    <div class="product-icon purple">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    </div>
+                    <div class="product-label">Chrome Extension</div>
+                    <h3>Real-time monitoring for ChatGPT, Claude, Gemini</h3>
+                    <ul class="product-features">
+                        <li>Browser-level AI query interception</li>
+                        <li>Instant risk badges on every message</li>
+                        <li>Block overlay in strict mode</li>
+                        <li>Monitor, strict, and silent modes</li>
+                    </ul>
+                    <a href="https://github.com/LogionOS/LogionOS-Extension" target="_blank" class="product-cta">Get Extension &rarr;</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon green">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                    </div>
+                    <div class="product-label">Enterprise Dashboard</div>
+                    <h3>Compliance visibility in one place</h3>
+                    <ul class="product-features">
+                        <li>Live analytics and risk scoring</li>
+                        <li>Audit trail with full query history</li>
+                        <li>Policy management interface</li>
+                        <li>Team activity and compliance reports</li>
+                    </ul>
+                    <a href="https://logionos-dashboard.vercel.app" target="_blank" class="product-cta">Open Dashboard &rarr;</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Platform Overview -->
-    <section id="platform" class="section">
+    <section id="platform" class="section alt-bg">
         <div class="section-container">
             <div class="section-header center">
                 <span class="section-label">Platform</span>
-                <h2>One platform. Every AI compliance need.</h2>
+                <h2>One engine. Every AI compliance need.</h2>
                 <p class="section-subtitle">LogionOS sits between your application and the LLM. Every prompt checked. Every response scanned. Every interaction audited.</p>
             </div>
 
@@ -140,14 +196,14 @@
                 <div class="layer-card">
                     <div class="layer-num">L3</div>
                     <h3>Audit &amp; Report</h3>
-                    <p>Immutable audit trail, compliance reports, recommendations. Export JSON/CSV.</p>
+                    <p>Immutable audit trail, compliance reports, AI judge reasoning, recommendations. Export JSON/CSV.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Grid -->
-    <section id="features" class="section alt-bg">
+    <section id="features" class="section">
         <div class="section-container">
             <div class="section-header center">
                 <span class="section-label">Features</span>
@@ -159,7 +215,7 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <h3>Input &amp; Output Scanning</h3>
-                    <p>Check both AI prompts and LLM responses. Detect PII leakage, hallucinated legal claims, and policy violations in generated content.</p>
+                    <p>Check both AI prompts and LLM responses via API or Chrome Extension. Detect PII leakage, hallucinated legal claims, and policy violations in real time.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon purple">
@@ -201,7 +257,7 @@
     </section>
 
     <!-- Developer Section -->
-    <section id="developers" class="section">
+    <section id="developers" class="section alt-bg">
         <div class="section-container">
             <div class="section-header center">
                 <span class="section-label">For Developers</span>
@@ -298,7 +354,7 @@ result, response = client.gateway(
     </section>
 
     <!-- Use Cases -->
-    <section class="section alt-bg">
+    <section class="section">
         <div class="section-container">
             <div class="section-header center">
                 <span class="section-label">Industries</span>
@@ -307,9 +363,9 @@ result, response = client.gateway(
             <div class="usecase-grid">
                 <div class="usecase-card">
                     <h3>Financial Services</h3>
-                    <p>HIPAA, SOX, AML/KYC compliance for AI-assisted trading, customer service, and fraud detection.</p>
+                    <p>SOX, AML/KYC, and Dodd-Frank compliance for AI-assisted trading, customer service, and fraud detection.</p>
                     <div class="usecase-tags">
-                        <span>HIPAA</span><span>SOX</span><span>AML</span>
+                        <span>SOX</span><span>AML</span><span>Dodd-Frank</span>
                     </div>
                 </div>
                 <div class="usecase-card">
@@ -340,11 +396,11 @@ result, response = client.gateway(
     <!-- CTA -->
     <section class="cta-section">
         <div class="cta-content">
-            <h2>Ship AI to regulated industries.<br>We handle compliance.</h2>
-            <p>Start with the free demo. Integrate the SDK. Scale with enterprise features.</p>
+            <h2>Start with the Dashboard.<br>Scale with enterprise features.</h2>
+            <p>Open the free Dashboard for instant compliance visibility. Integrate the API for backend enforcement. Deploy the Extension for browser-level monitoring.</p>
             <div class="cta-actions">
-                <a href="https://logionos-compliance-engine.streamlit.app/" target="_blank" class="btn-primary">Try Live Demo</a>
-                <a href="https://github.com/LogionOS" target="_blank" class="btn-secondary">View on GitHub &rarr;</a>
+                <a href="https://logionos-dashboard.vercel.app" target="_blank" class="btn-primary">Open Dashboard</a>
+                <a href="docs.html" class="btn-secondary">Read the Docs &rarr;</a>
             </div>
         </div>
     </section>
@@ -368,8 +424,9 @@ result, response = client.gateway(
                 </div>
                 <div class="footer-col">
                     <h4>Product</h4>
-                    <a href="#platform">Platform</a>
-                    <a href="#features">Features</a>
+                    <a href="#products">Products</a>
+                    <a href="https://logionos-dashboard.vercel.app" target="_blank">Dashboard</a>
+                    <a href="https://github.com/LogionOS/LogionOS-Extension" target="_blank">Chrome Extension</a>
                     <a href="pricing.html">Pricing</a>
                     <a href="https://logionos-compliance-engine.streamlit.app/" target="_blank">Live Demo</a>
                 </div>
