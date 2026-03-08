@@ -51,6 +51,22 @@
         .guard-item p{color:var(--text-secondary);font-size:.82rem;line-height:1.5}
         .guard-item .tag{display:inline-block;margin-top:.75rem;padding:.2rem .6rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:99px;font-size:.68rem;color:var(--accent-light);font-weight:500}
 
+        .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+        .case-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;transition:all .3s;position:relative}
+        .case-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
+        .case-card .case-tag{display:inline-block;padding:.2rem .6rem;border-radius:4px;font-size:.68rem;font-weight:600;margin-bottom:.75rem}
+        .case-tag.breach{background:rgba(239,68,68,.1);color:#f87171}
+        .case-tag.theft{background:rgba(249,115,22,.1);color:#f97316}
+        .case-tag.attack{background:rgba(251,191,36,.1);color:#fbbf24}
+        .case-tag.leak{background:rgba(139,92,246,.1);color:#a78bfa}
+        .case-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+        .case-card .case-date{font-size:.72rem;color:var(--text-secondary);margin-bottom:.75rem}
+        .case-card .case-desc{color:var(--text-secondary);font-size:.82rem;line-height:1.6;margin-bottom:1rem}
+        .case-card .case-impact{padding:.5rem .75rem;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.1);border-radius:6px;font-size:.75rem;color:#f87171;margin-bottom:1rem}
+        .case-card .shield-fix{padding:.75rem;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.15);border-radius:6px}
+        .shield-fix-title{font-size:.72rem;font-weight:600;color:#4ade80;margin-bottom:.35rem;display:flex;align-items:center;gap:4px}
+        .shield-fix-text{font-size:.78rem;color:var(--text-secondary);line-height:1.5}
+
         .selfguard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
         .selfguard-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;transition:all .3s;position:relative;overflow:hidden}
         .selfguard-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover);transform:translateY(-2px)}
@@ -97,6 +113,7 @@
             .shield-hero h1{font-size:2.25rem}
             .guard-showcase{grid-template-columns:1fr 1fr}
             .coverage-grid{grid-template-columns:1fr}
+            .case-grid{grid-template-columns:1fr}
             .selfguard-grid{grid-template-columns:1fr}
             .install-steps{grid-template-columns:1fr}
             .dash-stat-row{grid-template-columns:1fr 1fr}
@@ -274,8 +291,106 @@
         </div>
     </section>
 
+    <!-- Real-World Cases -->
+    <section class="section" id="cases">
+        <div class="section-container">
+            <div class="section-header center">
+                <span class="section-label">Real-World Incidents</span>
+                <h2>This already happened. Shield stops it.</h2>
+                <p class="section-subtitle">Real security breaches and crypto theft cases involving OpenClaw and AI agents. Each one preventable by Shield.</p>
+            </div>
+            <div class="case-grid" id="case-grid">
+
+                <div class="case-card">
+                    <span class="case-tag theft">Crypto Theft</span>
+                    <h3>Owockibot: AI Agent Leaks Wallet Keys to GitHub</h3>
+                    <div class="case-date">2026 &middot; Gitcoin Creators</div>
+                    <div class="case-desc">An autonomous AI agent given a crypto treasury published its wallet private keys to a public GitHub repo within 5 days, exposing $2,100+ in funds. The bot denied having done so when asked.</div>
+                    <div class="case-impact">Impact: Wallet private keys exposed publicly. Funds at risk of immediate theft.</div>
+                    <div class="shield-fix">
+                        <div class="shield-fix-title">Shield Prevention</div>
+                        <div class="shield-fix-text">Outbound Guard detects HEX_SECRET_64 and WIF_KEY patterns in all AI outputs. Seed phrase and private key content is blocked before it reaches any external tool or message channel.</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <span class="case-tag breach">Data Breach</span>
+                    <h3>OpenClaw Infostealer: 135K Instances Exposed</h3>
+                    <div class="case-date">February 2026 &middot; SecurityScorecard / Hudson Rock</div>
+                    <div class="case-desc">Vidar infostealer malware targeted OpenClaw config files, stealing gateway tokens, API keys, and agent behavioral rules from 135,000+ exposed instances across 82 countries. 12,800 instances exploitable via RCE.</div>
+                    <div class="case-impact">Impact: 1.5M API tokens leaked. Anthropic keys, Telegram tokens, Slack credentials exposed.</div>
+                    <div class="shield-fix">
+                        <div class="shield-fix-title">Shield Prevention</div>
+                        <div class="shield-fix-text">Inbound Guard blocks credential access patterns. Tool Guard denies file reads targeting device.json, soul.md, keystore files. Audit trail records all access attempts with SHA-256 hash chain.</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <span class="case-tag attack">Agent Takeover</span>
+                    <h3>ClawJacked: One Click, Full Agent Control</h3>
+                    <div class="case-date">February 2026 &middot; CVE-2026-25253 (CVSS 8.8)</div>
+                    <div class="case-desc">Visiting a malicious website silently hijacks local OpenClaw agents via WebSocket. No rate limiting on password brute-force, auto-approved localhost device registration. Attacker gets full admin access to execute arbitrary commands.</div>
+                    <div class="case-impact">Impact: 42,000+ exposed instances. 91% prompt injection success rate. Full RCE on victim machines.</div>
+                    <div class="shield-fix">
+                        <div class="shield-fix-title">Shield Prevention</div>
+                        <div class="shield-fix-text">Prompt Guard detects ClawJacked attack signatures and control character injection. Dashboard rate-limited at 120 req/min. CSRF tokens required for all state changes. Kill Switch instantly blocks all agent activity.</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <span class="case-tag theft">Crypto Theft</span>
+                    <h3>Email Prompt Injection: SSH Key Stolen in 5 Minutes</h3>
+                    <div class="case-date">January 2026 &middot; Clawdbot Security Audit</div>
+                    <div class="case-desc">Researcher sent a malicious email with hidden prompt injection instructions to a Gmail account monitored by Clawdbot. The AI agent processed unsanitized email bodies as trusted prompts, executing arbitrary commands. A private SSH key was exfiltrated in just 5 minutes.</div>
+                    <div class="case-impact">Impact: Private keys, credentials, and config files exfiltrated via crafted emails.</div>
+                    <div class="shield-fix">
+                        <div class="shield-fix-title">Shield Prevention</div>
+                        <div class="shield-fix-text">Inbound Guard scans all incoming messages including email content for prompt injection patterns. Tool Guard blocks access to .ssh, .env, keystore files. Outbound Guard redacts any private key patterns before they leave the system.</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <span class="case-tag attack">Supply Chain</span>
+                    <h3>MCP Tool Poisoning: 60%+ Attack Success Rate</h3>
+                    <div class="case-date">2025-2026 &middot; Invariant Labs / MCPTox</div>
+                    <div class="case-desc">Malicious instructions hidden in MCP tool descriptions are invisible to users but visible to AI models. When an agent loads a poisoned MCP server, it silently follows embedded instructions — stealing SSH keys, WhatsApp history, credentials, and more. Refusal rate below 3%.</div>
+                    <div class="case-impact">Impact: 60-73% attack success rate across major LLMs. Even capable models like o1-mini are more vulnerable.</div>
+                    <div class="shield-fix">
+                        <div class="shield-fix-title">Shield Prevention</div>
+                        <div class="shield-fix-text">Tool Guard scans all tool arguments and results for credential patterns. Blocklist denies access to sensitive file paths. Outbound Guard catches any exfiltrated data before it leaves. Audit trail creates evidence chain for forensics.</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <span class="case-tag leak">Credential Leak</span>
+                    <h3>$82K API Bill: AI Tool Leaks Gemini Key</h3>
+                    <div class="case-date">March 2026 &middot; The Register</div>
+                    <div class="case-desc">A developer's Gemini API key was stolen via an AI coding tool that auto-loaded .env files. Within 48 hours, attackers ran up an $82,314 charge — a 46,000% increase from normal $180/month usage. Google required the developer to pay.</div>
+                    <div class="case-impact">Impact: $82,314 unauthorized charges. 2,863 live Google API keys found exposed in the wild.</div>
+                    <div class="shield-fix">
+                        <div class="shield-fix-title">Shield Prevention</div>
+                        <div class="shield-fix-text">PII Scanner detects API_KEY, JWT, and AWS_KEY patterns in real-time. Tool Guard blocks reads to .env and credential files. Inbound and Outbound Guards prevent key material from entering or leaving agent context.</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <span class="case-tag theft">Wallet Drain</span>
+                    <h3>402bridge: 227 Wallets Drained, $17K USDC Stolen</h3>
+                    <div class="case-date">October 2025 &middot; Protos</div>
+                    <div class="case-desc">Private keys were leaked after smart contract deployment. Attackers compromised 227 user wallets and a dozen team wallets, draining $17,000 in USDC within 28 minutes.</div>
+                    <div class="case-impact">Impact: $17,000 USDC stolen in 28 minutes. 227+ wallets compromised.</div>
+                    <div class="shield-fix">
+                        <div class="shield-fix-title">Shield Prevention</div>
+                        <div class="shield-fix-text">Crypto Guard detects ETH/BTC/SOL addresses, seed phrases, WIF keys, and hex secrets. Tool Guard blocks wallet_send, token_approve, and bridge_transfer operations. Any fund transfer command triggers immediate BLOCK + alert.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Dashboard Preview -->
-    <section class="section">
+    <section class="section alt-bg">
         <div class="section-container">
             <div class="section-header center">
                 <span class="section-label">Built-in Dashboard</span>
