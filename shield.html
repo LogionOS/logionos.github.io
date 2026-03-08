@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogionOS Shield — Free Compliance Layer for OpenClaw</title>
+    <meta name="description" content="Protect your OpenClaw AI agent with enterprise-grade compliance. Free and open source. PII detection, audit trails, prompt injection defense, and tool access control.">
+    <meta property="og:title" content="LogionOS Shield — Free Compliance for OpenClaw">
+    <meta property="og:description" content="135K+ OpenClaw instances have zero compliance controls. Shield fixes that in one command. Free forever.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .shield-hero{padding:11rem 2rem 5rem;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,.06) 0%,transparent 60%)}
+        .shield-hero-container{max-width:860px;margin:0 auto}
+        .shield-badge{display:inline-flex;align-items:center;gap:8px;padding:.45rem 1.1rem;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:100px;font-size:.8rem;font-weight:600;color:#f87171;margin-bottom:2rem}
+        .shield-badge::before{content:'';width:8px;height:8px;background:#ef4444;border-radius:50%;animation:blink 1.5s infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+        .shield-hero h1{font-size:3.5rem;font-weight:800;line-height:1.1;letter-spacing:-.04em;margin-bottom:1.5rem}
+        .shield-hero h1 em{font-style:normal;background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .shield-hero p{font-size:1.2rem;color:var(--text-secondary);max-width:620px;margin:0 auto 2.5rem;line-height:1.7}
+        .shield-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .btn-shield{display:inline-flex;align-items:center;gap:.5rem;background:#ef4444;color:#fff;padding:.8rem 1.8rem;border-radius:10px;font-weight:600;text-decoration:none;font-size:.95rem;transition:all .2s}
+        .btn-shield:hover{background:#dc2626;transform:translateY(-1px)}
+
+        .threat-bar{padding:3rem 2rem;border-top:1px solid rgba(239,68,68,.15);border-bottom:1px solid var(--border);background:rgba(239,68,68,.02)}
+        .threat-container{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+        .threat-stat{text-align:center}
+        .threat-value{display:block;font-size:1.75rem;font-weight:700;color:#f87171;letter-spacing:-.02em}
+        .threat-label{display:block;font-size:.78rem;color:var(--text-secondary);margin-top:.2rem}
+
+        .coverage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+        .coverage-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;transition:all .3s}
+        .coverage-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
+        .coverage-card.covered{border-left:3px solid #4ade80}
+        .coverage-card.partial{border-left:3px solid #fbbf24}
+        .coverage-status{display:inline-flex;align-items:center;gap:5px;padding:.2rem .65rem;border-radius:99px;font-size:.7rem;font-weight:600;margin-bottom:.75rem}
+        .coverage-status.green{background:rgba(74,222,128,.1);color:#4ade80}
+        .coverage-status.yellow{background:rgba(251,191,36,.1);color:#fbbf24}
+        .coverage-card h3{font-size:1rem;font-weight:600;margin-bottom:.4rem}
+        .coverage-card p{color:var(--text-secondary);font-size:.85rem;line-height:1.6}
+        .cve-tag{display:inline-block;padding:.15rem .5rem;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);border-radius:4px;font-size:.68rem;font-family:'JetBrains Mono',monospace;color:#f87171;margin-right:.35rem;margin-bottom:.25rem}
+
+        .guard-showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+        .guard-item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;text-align:center;transition:all .3s}
+        .guard-item:hover{border-color:var(--border-hover);background:var(--bg-card-hover);transform:translateY(-2px)}
+        .guard-emoji{font-size:2.5rem;margin-bottom:.75rem}
+        .guard-item h3{font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+        .guard-item p{color:var(--text-secondary);font-size:.82rem;line-height:1.5}
+        .guard-item .tag{display:inline-block;margin-top:.75rem;padding:.2rem .6rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:99px;font-size:.68rem;color:var(--accent-light);font-weight:500}
+
+        .install-section{text-align:center}
+        .install-window{max-width:640px;margin:2rem auto 0}
+        .install-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:700px;margin:2.5rem auto 0}
+        .install-step{padding:1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);text-align:center}
+        .install-step .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(59,130,246,.1);border-radius:8px;font-size:.8rem;font-weight:700;color:var(--accent-light);margin-bottom:.5rem}
+        .install-step strong{display:block;font-size:.9rem;margin-bottom:.25rem}
+        .install-step span{color:var(--text-secondary);font-size:.78rem}
+
+        .open-source-banner{padding:4rem 2rem;text-align:center;background:linear-gradient(to right,rgba(59,130,246,.04),rgba(139,92,246,.04))}
+        .open-source-content{max-width:700px;margin:0 auto}
+        .open-source-content h2{font-size:2rem;font-weight:700;margin-bottom:1rem;letter-spacing:-.02em}
+        .open-source-content p{color:var(--text-secondary);font-size:1.05rem;margin-bottom:2rem;line-height:1.7}
+        .license-row{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+        .license-item{padding:.75rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);text-align:center}
+        .license-item strong{display:block;font-size:.95rem}
+        .license-item span{color:var(--text-secondary);font-size:.78rem}
+
+        .dash-preview{max-width:900px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:var(--bg-card)}
+        .dash-preview-bar{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border)}
+        .dash-preview-body{padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;line-height:1.8;color:var(--text-secondary)}
+        .dash-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+        .dash-stat{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center}
+        .dash-stat .v{font-size:1.5rem;font-weight:700;font-family:'Inter',sans-serif}
+        .dash-stat .v.g{color:#4ade80}.dash-stat .v.r{color:#f87171}.dash-stat .v.o{color:#f97316}.dash-stat .v.b{color:#60a5fa}
+        .dash-stat .l{font-size:.7rem;color:var(--text-secondary);margin-top:.2rem;font-family:'Inter',sans-serif}
+
+        @media(max-width:768px){
+            .shield-hero{padding:8rem 1.5rem 3rem}
+            .shield-hero h1{font-size:2.25rem}
+            .guard-showcase{grid-template-columns:1fr 1fr}
+            .coverage-grid{grid-template-columns:1fr}
+            .install-steps{grid-template-columns:1fr}
+            .dash-stat-row{grid-template-columns:1fr 1fr}
+            .threat-container{flex-direction:column;gap:1.5rem}
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="6" fill="#000"/>
+                        <path d="M20 12 C20 12, 15 14, 13 20 C11 26, 14 31, 20 31" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M28 20 C28 20, 26 15, 20 13 C14 11, 9 14, 9 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M20 28 C20 28, 25 26, 27 20 C29 14, 26 9, 20 9" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M12 20 C12 20, 14 25, 20 27 C26 29, 31 26, 31 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </span>
+                LogionOS
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="shield.html" style="color:var(--text)">Shield</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="https://github.com/LogionOS/openclaw-shield" target="_blank" class="nav-cta">GitHub</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="shield-hero">
+        <div class="shield-hero-container">
+            <div class="shield-badge">Security Advisory &middot; 35+ CVEs in OpenClaw</div>
+            <h1>Your OpenClaw has<br><em>zero compliance.</em><br>We fix that. Free.</h1>
+            <p>135,000+ OpenClaw instances are running without audit logs, access controls, or PII protection. LogionOS Shield adds enterprise-grade compliance in one command. Open source. Free forever.</p>
+            <div class="shield-actions">
+                <a href="https://github.com/LogionOS/openclaw-shield" target="_blank" class="btn-shield">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Get Shield on GitHub
+                </a>
+                <a href="#install" class="btn-secondary">Install in 60 seconds &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Threat stats -->
+    <section class="threat-bar">
+        <div class="threat-container">
+            <div class="threat-stat">
+                <span class="threat-value">135K+</span>
+                <span class="threat-label">Exposed Instances</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="threat-stat">
+                <span class="threat-value">35+</span>
+                <span class="threat-label">Known CVEs</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="threat-stat">
+                <span class="threat-value">1.5M</span>
+                <span class="threat-label">API Tokens Leaked</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="threat-stat">
+                <span class="threat-value">1,184</span>
+                <span class="threat-label">Malicious Skills</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="threat-stat">
+                <span class="threat-value">2/100</span>
+                <span class="threat-label">ZeroLeaks Score</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Four Guards -->
+    <section class="section" id="guards">
+        <div class="section-container">
+            <div class="section-header center">
+                <span class="section-label">Four Layers of Protection</span>
+                <h2>Every message. Every tool call. Covered.</h2>
+                <p class="section-subtitle">Shield intercepts at four critical lifecycle points in the OpenClaw gateway — before and after every AI interaction.</p>
+            </div>
+            <div class="guard-showcase">
+                <div class="guard-item">
+                    <div class="guard-emoji">🛡️</div>
+                    <h3>Inbound Guard</h3>
+                    <p>Scans user messages for PII, credentials, and prompt injection before they reach the AI</p>
+                    <div class="tag">request.pre</div>
+                </div>
+                <div class="guard-item">
+                    <div class="guard-emoji">🧠</div>
+                    <h3>Prompt Guard</h3>
+                    <p>Detects ClawJacked attack signatures and malicious context injection in system prompts</p>
+                    <div class="tag">prompt.pre</div>
+                </div>
+                <div class="guard-item">
+                    <div class="guard-emoji">🔧</div>
+                    <h3>Tool Guard</h3>
+                    <p>Controls which tools the agent can use, scans arguments for dangerous operations</p>
+                    <div class="tag">tool.pre / tool.post</div>
+                </div>
+                <div class="guard-item">
+                    <div class="guard-emoji">📤</div>
+                    <h3>Outbound Guard</h3>
+                    <p>Filters AI responses for data leaks and automatically adds regulatory disclaimers</p>
+                    <div class="tag">message.pre</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Matrix -->
+    <section class="section alt-bg" id="coverage">
+        <div class="section-container">
+            <div class="section-header center">
+                <span class="section-label">Threat Coverage</span>
+                <h2>What Shield protects against</h2>
+                <p class="section-subtitle">Comprehensive coverage of OpenClaw's known vulnerabilities and compliance gaps</p>
+            </div>
+            <div class="coverage-grid">
+                <div class="coverage-card covered">
+                    <span class="coverage-status green">Fully Covered</span>
+                    <h3>No Audit Logs</h3>
+                    <p>Tamper-evident SHA-256 hash chain audit trail. Every compliance decision is recorded with full context, exportable as JSON/CSV. Compatible with SOC 2 and ISO 27001 evidence requirements.</p>
+                </div>
+                <div class="coverage-card covered">
+                    <span class="coverage-status green">Fully Covered</span>
+                    <h3>Prompt Injection (ClawJacked)</h3>
+                    <p>Dedicated Prompt Guard with 8+ ClawJacked attack signatures, control character detection, and context file injection scanning.</p>
+                    <div><span class="cve-tag">CVE-2026-25253</span><span class="cve-tag">CVE-2026-27001</span></div>
+                </div>
+                <div class="coverage-card covered">
+                    <span class="coverage-status green">Fully Covered</span>
+                    <h3>PII &amp; Credential Exposure</h3>
+                    <p>12+ PII patterns detected in real-time: SSN, credit cards, API keys, JWT tokens, AWS credentials, private keys, passwords, My Number (JP), and more.</p>
+                </div>
+                <div class="coverage-card covered">
+                    <span class="coverage-status green">Fully Covered</span>
+                    <h3>No Access Controls</h3>
+                    <p>Tool Guard enforces allowlist/denylist policies per tool, scans arguments for destructive operations (rm -rf, DROP TABLE, SQL injection), and blocks unauthorized actions.</p>
+                </div>
+                <div class="coverage-card covered">
+                    <span class="coverage-status green">Fully Covered</span>
+                    <h3>Data Leaks via AI Responses</h3>
+                    <p>Outbound Guard scans every AI response for PII before delivery. Detects leaked credentials, personal data, and adds regulatory disclaimers for medical/legal/financial topics.</p>
+                </div>
+                <div class="coverage-card covered">
+                    <span class="coverage-status green">Fully Covered</span>
+                    <h3>No Emergency Controls</h3>
+                    <p>Kill Switch instantly blocks all AI interactions across all channels. Switchable enforcement modes: Monitor &rarr; Enforce &rarr; Strict, with per-guard toggle controls.</p>
+                </div>
+                <div class="coverage-card partial">
+                    <span class="coverage-status yellow">Mitigated</span>
+                    <h3>Malicious Skills (ClawHavoc)</h3>
+                    <p>Tool Guard pre/post scanning detects dangerous operations from malicious skills at runtime. Combined with denylist policies, prevents most skill-based attacks.</p>
+                    <div><span class="cve-tag">1,184+ malicious skills</span></div>
+                </div>
+                <div class="coverage-card partial">
+                    <span class="coverage-status yellow">Mitigated</span>
+                    <h3>Dangerous Tool Execution</h3>
+                    <p>Blocks shell execution, filesystem deletion, and SQL injection patterns in tool arguments. Detects cloud metadata access and pipe-based download attacks.</p>
+                    <div><span class="cve-tag">CVE-2026-28363</span><span class="cve-tag">CVE-2026-24763</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header center">
+                <span class="section-label">Built-in Dashboard</span>
+                <h2>Full visibility. Zero extra setup.</h2>
+                <p class="section-subtitle">Shield ships with an embedded web dashboard — no separate deployment needed. Real-time monitoring at <code style="color:var(--accent-light)">localhost:18789/logionos/</code></p>
+            </div>
+            <div class="dash-preview">
+                <div class="dash-preview-bar">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="code-filename">LogionOS Shield Dashboard</span>
+                </div>
+                <div class="dash-preview-body">
+                    <div class="dash-stat-row">
+                        <div class="dash-stat"><div class="v b">1,247</div><div class="l">Total Checks</div></div>
+                        <div class="dash-stat"><div class="v r">18</div><div class="l">Blocked</div></div>
+                        <div class="dash-stat"><div class="v o">43</div><div class="l">Flagged</div></div>
+                        <div class="dash-stat"><div class="v g">95.1%</div><div class="l">Compliance Rate</div></div>
+                    </div>
+                    <div style="padding:8px 12px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:6px;margin-bottom:6px;display:flex;justify-content:space-between">
+                        <span>14:32:01 <span style="color:#f87171">BLOCK</span> inbound</span><span>prompt_injection:clawjacked</span><span>1.2ms</span>
+                    </div>
+                    <div style="padding:8px 12px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:6px;margin-bottom:6px;display:flex;justify-content:space-between">
+                        <span>14:31:58 <span style="color:#4ade80">PASS</span> &nbsp;&nbsp;inbound</span><span>—</span><span>0.8ms</span>
+                    </div>
+                    <div style="padding:8px 12px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:6px;margin-bottom:6px;display:flex;justify-content:space-between">
+                        <span>14:31:45 <span style="color:#fbbf24">WARN</span> &nbsp;outbound</span><span>pii_detected:EMAIL</span><span>1.5ms</span>
+                    </div>
+                    <div style="padding:8px 12px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:6px;display:flex;justify-content:space-between">
+                        <span>14:31:30 <span style="color:#f97316">FLAG</span> &nbsp;&nbsp;tool</span><span>high_risk_tool:shell_exec</span><span>0.9ms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Install -->
+    <section class="section alt-bg" id="install">
+        <div class="section-container install-section">
+            <div class="section-header center">
+                <span class="section-label">Get Started</span>
+                <h2>Install in 60 seconds</h2>
+                <p class="section-subtitle">One command. No configuration files to edit. No separate services to deploy.</p>
+            </div>
+            <div class="install-window">
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots"><span></span><span></span><span></span></div>
+                        <span class="code-filename">terminal</span>
+                    </div>
+                    <pre class="code-body"><code><span class="c-comment"># Install the plugin</span>
+<span class="c-keyword">$</span> openclaw plugins install @logionos/openclaw-shield
+
+<span class="c-comment"># Restart gateway</span>
+<span class="c-keyword">$</span> openclaw restart
+
+<span class="c-comment"># Open dashboard</span>
+<span class="c-keyword">$</span> open http://localhost:18789/logionos/</code></pre>
+                </div>
+            </div>
+            <div class="install-steps">
+                <div class="install-step">
+                    <div class="num">1</div>
+                    <strong>Install</strong>
+                    <span>One npm command, auto-registers with gateway</span>
+                </div>
+                <div class="install-step">
+                    <div class="num">2</div>
+                    <strong>Restart</strong>
+                    <span>Shield activates, hooks into all lifecycle events</span>
+                </div>
+                <div class="install-step">
+                    <div class="num">3</div>
+                    <strong>Monitor</strong>
+                    <span>Open dashboard, starts in safe Monitor mode</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source -->
+    <section class="open-source-banner">
+        <div class="open-source-content">
+            <h2>Free. Open Source. No catch.</h2>
+            <p>Shield's core protection runs entirely local — PII scanning, blocklist matching, tool access control, and audit logging work without any external API. Connect to LogionOS Cloud for advanced regulation matching and AI-powered intent analysis.</p>
+            <div class="license-row">
+                <div class="license-item">
+                    <strong>Local Checks</strong>
+                    <span>Free forever &middot; &lt;2ms</span>
+                </div>
+                <div class="license-item">
+                    <strong>Dashboard</strong>
+                    <span>Free &middot; Embedded</span>
+                </div>
+                <div class="license-item">
+                    <strong>Audit Trail</strong>
+                    <span>Free &middot; Hash chain</span>
+                </div>
+                <div class="license-item">
+                    <strong>Cloud Deep Check</strong>
+                    <span>1K/mo free &middot; Regulation AI</span>
+                </div>
+            </div>
+            <div class="shield-actions">
+                <a href="https://github.com/LogionOS/openclaw-shield" target="_blank" class="btn-shield">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    View on GitHub
+                </a>
+                <a href="docs.html" class="btn-secondary">Read the Docs &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Stop running OpenClaw naked.</h2>
+            <p>Every message without Shield is a compliance risk. Install now, monitor first, enforce when ready.</p>
+            <div class="cta-actions">
+                <a href="https://github.com/LogionOS/openclaw-shield" target="_blank" class="btn-primary">
+                    Install Shield
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://logionos-dashboard.vercel.app" target="_blank" class="btn-secondary">Try LogionOS Dashboard &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 40 40" width="24" height="24" fill="none"><rect width="40" height="40" rx="6" fill="#000"/><path d="M20 12 C20 12, 15 14, 13 20 C11 26, 14 31, 20 31" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M28 20 C28 20, 26 15, 20 13 C14 11, 9 14, 9 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20 28 C20 28, 25 26, 27 20 C29 14, 26 9, 20 9" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M12 20 C12 20, 14 25, 20 27 C26 29, 31 26, 31 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+                        LogionOS
+                    </div>
+                    <p>AI Compliance Operating System</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="index.html#products">Products</a>
+                    <a href="shield.html">Shield for OpenClaw</a>
+                    <a href="pricing.html">Pricing</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="docs.html">Documentation</a>
+                    <a href="https://github.com/LogionOS/openclaw-shield" target="_blank">Shield GitHub</a>
+                    <a href="https://github.com/LogionOS/logionos-python" target="_blank">Python SDK</a>
+                    <a href="https://github.com/LogionOS/logionos-js" target="_blank">JS/TS SDK</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="https://github.com/LogionOS" target="_blank">GitHub</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="mailto:chris@logionos.com">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 LogionOS Inc. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
