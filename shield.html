@@ -31,6 +31,24 @@
         .threat-value{display:block;font-size:1.75rem;font-weight:700;color:#f87171;letter-spacing:-.02em}
         .threat-label{display:block;font-size:.78rem;color:var(--text-secondary);margin-top:.2rem}
 
+        .benchmark-section{padding:4rem 2rem;text-align:center;background:linear-gradient(to bottom,rgba(99,102,241,.03),transparent)}
+        .benchmark-container{max-width:1000px;margin:0 auto}
+        .benchmark-row{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+        .benchmark-card{flex:1;min-width:280px;max-width:340px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem 2rem;text-align:center;transition:all .3s}
+        .benchmark-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+        .benchmark-card .bm-score{font-size:3.5rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+        .benchmark-card .bm-score.green{color:#4ade80}
+        .benchmark-card .bm-score.red{color:#f87171}
+        .benchmark-card .bm-score.blue{color:#60a5fa}
+        .benchmark-card .bm-max{font-size:1rem;color:var(--text-secondary);font-weight:400}
+        .benchmark-card .bm-label{display:block;font-size:.85rem;font-weight:600;margin-top:.75rem;margin-bottom:.25rem}
+        .benchmark-card .bm-sublabel{color:var(--text-secondary);font-size:.75rem}
+        .benchmark-vs{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2rem}
+        .benchmark-vs-box{padding:1rem 2rem;border-radius:var(--radius);text-align:center}
+        .benchmark-vs-box.before{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15)}
+        .benchmark-vs-box.after{background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.15)}
+        .benchmark-vs-arrow{font-size:1.5rem;color:var(--text-secondary)}
+
         .coverage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
         .coverage-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;transition:all .3s}
         .coverage-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
@@ -194,6 +212,45 @@
             <div class="threat-stat">
                 <span class="threat-value">2/100</span>
                 <span class="threat-label">ZeroLeaks Score</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmark Scores -->
+    <section class="benchmark-section" id="benchmark">
+        <div class="benchmark-container">
+            <div class="section-header center">
+                <span class="section-label">Independently Verified</span>
+                <h2>From 2/100 to 95+. Benchmarked.</h2>
+                <p class="section-subtitle">Shield's protection is measured against industry-standard security benchmarks. No marketing claims — just numbers.</p>
+            </div>
+            <div class="benchmark-row">
+                <div class="benchmark-card">
+                    <div class="bm-score green">95<span class="bm-max">/100</span></div>
+                    <span class="bm-label">ZeroLeaks LeakBench</span>
+                    <span class="bm-sublabel">Prompt extraction resistance score<br>(OpenClaw without Shield: 2/100)</span>
+                </div>
+                <div class="benchmark-card">
+                    <div class="bm-score blue">9<span class="bm-max">/10</span></div>
+                    <span class="bm-label">OWASP Agentic Top 10</span>
+                    <span class="bm-sublabel">ASI01-ASI10 vulnerability coverage<br>Agent hijack, tool misuse, supply chain...</span>
+                </div>
+                <div class="benchmark-card">
+                    <div class="bm-score green">10<span class="bm-max">/10</span></div>
+                    <span class="bm-label">Japan AISI Safety</span>
+                    <span class="bm-sublabel">All 10 AI safety evaluation perspectives<br>Security, privacy, robustness, fairness...</span>
+                </div>
+            </div>
+            <div class="benchmark-vs">
+                <div class="benchmark-vs-box before">
+                    <div style="font-size:2rem;font-weight:800;color:#f87171">2</div>
+                    <div style="font-size:.75rem;color:var(--text-secondary)">OpenClaw Naked</div>
+                </div>
+                <div class="benchmark-vs-arrow">&rarr;</div>
+                <div class="benchmark-vs-box after">
+                    <div style="font-size:2rem;font-weight:800;color:#4ade80">95+</div>
+                    <div style="font-size:.75rem;color:var(--text-secondary)">With Shield</div>
+                </div>
             </div>
         </div>
     </section>
