@@ -54,7 +54,7 @@
 
     <div class="legal-content">
         <h1>Privacy Policy</h1>
-        <p class="legal-meta">Last updated: March 5, 2026</p>
+        <p class="legal-meta">Last updated: March 9, 2026</p>
 
         <p>LogionOS Inc. ("LogionOS," "we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI compliance platform, APIs, dashboard, browser extension, and related services (collectively, the "Service").</p>
 
@@ -163,16 +163,35 @@
         <h3>8.5 Singapore (PDPA)</h3>
         <p>We comply with the Personal Data Protection Act 2012 (as amended). Singapore residents may contact us to access or correct personal data.</p>
 
-        <h2>9. Cookies and Tracking</h2>
+        <h2 id="chrome-extension">9. Chrome Extension</h2>
+        <p>The LogionOS Chrome Extension ("AI Compliance Shield") monitors queries sent to supported AI platforms (ChatGPT, Claude, Google Gemini) for compliance purposes. The following disclosures apply specifically to the extension:</p>
+        <table>
+            <tr><th>Permission</th><th>Purpose</th></tr>
+            <tr><td><code>storage</code></td><td>Save user preferences, daily statistics, and recent check history locally in Chrome</td></tr>
+            <tr><td><code>activeTab</code></td><td>Detect which AI platform tab is active</td></tr>
+            <tr><td><code>scripting</code></td><td>Inject the compliance interceptor on supported AI platform pages</td></tr>
+            <tr><td>Host permissions</td><td>Run content scripts on chatgpt.com, claude.ai, gemini.google.com only</td></tr>
+            <tr><td>Optional host permissions</td><td>Connect to user-configured API endpoint (requested only when a custom API URL is set for on-premise deployments)</td></tr>
+        </table>
+        <ul>
+            <li>The extension <strong>only activates</strong> on the four AI platform domains listed above</li>
+            <li>Query text is sent <strong>only</strong> to the user-configured LogionOS API endpoint for compliance analysis</li>
+            <li>All settings, statistics, and check history are stored <strong>locally</strong> in <code>chrome.storage.local</code></li>
+            <li>The extension does <strong>not</strong> collect browsing history, personal information, or AI responses</li>
+            <li>The extension does <strong>not</strong> contain remote code loading — all logic is bundled in the package</li>
+            <li>Organizations using on-premise API deployments retain <strong>full control</strong> over all data processing</li>
+        </ul>
+
+        <h2>10. Cookies and Tracking</h2>
         <p>Our website uses minimal cookies for essential functionality only. The Enterprise Dashboard uses localStorage for session management. We do not use third-party advertising trackers.</p>
 
-        <h2>10. Children's Privacy</h2>
+        <h2>11. Children's Privacy</h2>
         <p>The Service is not intended for use by individuals under the age of 18. We do not knowingly collect personal information from children. If we discover we have collected data from a child, we will delete it promptly.</p>
 
-        <h2>11. Changes to This Policy</h2>
+        <h2>12. Changes to This Policy</h2>
         <p>We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website with a new "Last updated" date.</p>
 
-        <h2>12. Contact Us</h2>
+        <h2>13. Contact Us</h2>
         <p>If you have questions about this Privacy Policy or our data practices, please contact:</p>
         <p>LogionOS Inc.<br>Data Protection Inquiries<br>Email: <a href="mailto:chris@logionos.com">chris@logionos.com</a><br>Website: <a href="https://logionos.com">https://logionos.com</a></p>
     </div>
