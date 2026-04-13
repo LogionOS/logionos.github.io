@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise-Ready AI Founder Program — powered by LogionOS</title>
+    <meta name="description" content="Free 6-month access to LogionOS for early-stage AI startups. Become enterprise-ready from day one — runtime compliance, audit trails, and safety controls. Up to 500 selected teams globally. Apply now.">
+    <link rel="canonical" href="https://logionos.com/founders.html">
+    <meta property="og:title" content="Enterprise-Ready AI Founder Program — powered by LogionOS">
+    <meta property="og:description" content="Selected early-stage AI startups get free 6-month access to compliance, audit, and safety infrastructure. Become enterprise-ready from day one.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://logionos.com/founders.html">
+    <meta property="og:site_name" content="LogionOS">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Enterprise-Ready AI Founder Program — powered by LogionOS">
+    <meta name="twitter:description" content="Free 6-month access to compliance, audit, and safety infrastructure for early AI teams. Apply now.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .fp-hero{padding:10rem 2rem 5rem;text-align:center;background:radial-gradient(ellipse at 50% 20%,rgba(59,130,246,.08) 0%,transparent 60%)}
+        .fp-hero-container{max-width:820px;margin:0 auto}
+        .fp-powered{font-size:.8rem;font-weight:500;color:var(--text-secondary);margin-bottom:1rem;letter-spacing:.04em}
+        .fp-powered strong{color:var(--accent-light);font-weight:600}
+        .fp-hero h1{font-size:3.25rem;font-weight:800;line-height:1.1;letter-spacing:-.04em;margin-bottom:1.5rem}
+        .fp-hero h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .fp-hero .subtitle{font-size:1.2rem;color:var(--text-secondary);max-width:620px;margin:0 auto 2.5rem;line-height:1.7}
+        .fp-badge{display:inline-block;padding:.5rem 1.2rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:100px;font-size:.82rem;font-weight:600;color:#4ade80;margin-bottom:2rem}
+        .fp-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+        .fp-stats{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
+        .fp-stat{text-align:center}
+        .fp-stat-value{display:block;font-size:1.8rem;font-weight:800;letter-spacing:-.02em;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .fp-stat-label{display:block;font-size:.72rem;color:var(--text-secondary);margin-top:.15rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+
+        .fp-section{padding:5rem 2rem}
+        .fp-container{max-width:1000px;margin:0 auto}
+        .fp-section-title{font-size:2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.75rem}
+        .fp-section-sub{color:var(--text-secondary);font-size:1.05rem;margin-bottom:2.5rem;line-height:1.7;max-width:640px}
+
+        .fp-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+        .fp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;transition:all .3s}
+        .fp-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
+        .fp-card-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;margin-bottom:1rem;font-size:1.2rem}
+        .fp-card-icon.blue{background:rgba(59,130,246,.1)}
+        .fp-card-icon.purple{background:rgba(139,92,246,.1)}
+        .fp-card-icon.green{background:rgba(34,197,94,.1)}
+        .fp-card-icon.amber{background:rgba(245,158,11,.1)}
+        .fp-card-icon.cyan{background:rgba(6,182,212,.1)}
+        .fp-card-icon.red{background:rgba(239,68,68,.1)}
+        .fp-card h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+        .fp-card p{color:var(--text-secondary);font-size:.875rem;line-height:1.65}
+
+        .fp-eligible{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+        .fp-require-box{background:var(--bg-card);border:1px solid rgba(59,130,246,.3);border-radius:var(--radius-lg);padding:2rem}
+        .fp-require-box h3{font-size:1.1rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+        .fp-require-box h3 .tag{font-size:.65rem;padding:.2rem .6rem;border-radius:100px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+        .tag-required{background:rgba(59,130,246,.15);color:var(--accent-light)}
+        .tag-optional{background:rgba(139,92,246,.15);color:#a78bfa}
+        .fp-require-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+        .fp-require-list li{font-size:.9rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:.6rem;line-height:1.6}
+        .fp-require-list li::before{content:"✓";color:#4ade80;font-weight:700;flex-shrink:0;margin-top:1px}
+        .fp-require-note{font-size:.78rem;color:var(--text-secondary);margin-top:1rem;font-style:italic}
+
+        .fp-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;counter-reset:step}
+        .fp-step{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;counter-increment:step;position:relative}
+        .fp-step::before{content:counter(step);display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(59,130,246,.1);border-radius:8px;font-size:.8rem;font-weight:700;color:var(--accent-light);margin-bottom:1rem}
+        .fp-step h3{font-size:.95rem;font-weight:600;margin-bottom:.4rem}
+        .fp-step p{color:var(--text-secondary);font-size:.82rem;line-height:1.6}
+
+        .fp-scope{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+        .fp-scope-col h3{font-size:1.1rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+        .fp-scope-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+        .fp-scope-list li{font-size:.88rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:.5rem;line-height:1.5}
+        .fp-scope-list.included li::before{content:"✓";color:#4ade80;font-weight:700;flex-shrink:0}
+        .fp-scope-list.excluded li::before{content:"—";color:#555;font-weight:700;flex-shrink:0}
+
+        .fp-cta-section{padding:6rem 2rem;text-align:center;background:radial-gradient(ellipse at center,rgba(59,130,246,.08) 0%,transparent 60%)}
+        .fp-cta-section h2{font-size:2.25rem;font-weight:700;letter-spacing:-.02em;margin-bottom:1rem}
+        .fp-cta-section p{color:var(--text-secondary);font-size:1.05rem;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+        .fp-cta-section .fp-deadline{font-size:.85rem;color:var(--text-secondary);margin-top:1.5rem}
+        .fp-cta-section .fp-deadline strong{color:var(--accent-light)}
+
+        @media(max-width:768px){
+            .fp-hero h1{font-size:2rem}
+            .fp-grid-3{grid-template-columns:1fr}
+            .fp-eligible{grid-template-columns:1fr}
+            .fp-steps{grid-template-columns:repeat(2,1fr)}
+            .fp-scope{grid-template-columns:1fr}
+            .fp-stats{gap:1.25rem}
+            .fp-stat-value{font-size:1.4rem}
+        }
+        @media(max-width:480px){
+            .fp-hero h1{font-size:1.75rem}
+            .fp-steps{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="6" fill="#000"/>
+                        <path d="M20 12 C20 12, 15 14, 13 20 C11 26, 14 31, 20 31" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M28 20 C28 20, 26 15, 20 13 C14 11, 9 14, 9 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M20 28 C20 28, 25 26, 27 20 C29 14, 26 9, 20 9" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M12 20 C12 20, 14 25, 20 27 C26 29, 31 26, 31 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </span>
+                LogionOS
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#platform">Platform</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="founders.html" style="color:var(--accent-light)">Founder Program</a></li>
+                <li><a href="https://logionos-dashboard.vercel.app" target="_blank" class="nav-cta">Dashboard</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="fp-hero">
+        <div class="fp-hero-container">
+            <div class="fp-powered">powered by <strong>LogionOS</strong></div>
+            <div class="fp-badge">Batch 01 &middot; Now Accepting Applications</div>
+            <h1>Enterprise-Ready<br><span>AI Founder Program</span></h1>
+            <p class="subtitle">Selected early-stage AI startups get free 6-month access to compliance, safety, and audit infrastructure. Build products that are controllable, auditable, and ready for enterprise and regulated environments &mdash; from day one.</p>
+            <div class="fp-actions">
+                <a href="#apply" class="btn-primary">
+                    Apply Now
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="#eligibility" class="btn-secondary">Check Eligibility &darr;</a>
+            </div>
+            <div class="fp-stats">
+                <div class="fp-stat">
+                    <span class="fp-stat-value">500</span>
+                    <span class="fp-stat-label">Selected Startups</span>
+                </div>
+                <div class="fp-stat">
+                    <span class="fp-stat-value">6 mo</span>
+                    <span class="fp-stat-label">Free Access</span>
+                </div>
+                <div class="fp-stat">
+                    <span class="fp-stat-value">4,004</span>
+                    <span class="fp-stat-label">Regulations Covered</span>
+                </div>
+                <div class="fp-stat">
+                    <span class="fp-stat-value">Global</span>
+                    <span class="fp-stat-label">Open Worldwide</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why This Program -->
+    <section class="fp-section alt-bg">
+        <div class="fp-container">
+            <div style="text-align:center;margin-bottom:3rem">
+                <span class="section-label">The Problem</span>
+                <h2 class="fp-section-title" style="max-width:700px;margin:0 auto .75rem">Early AI teams move fast.<br>Trust, control, and compliance get left behind.</h2>
+                <p class="fp-section-sub" style="margin:0 auto">Promising AI products ship quickly, but enterprise buyers require compliance, auditability, and safety controls. Without these, startups struggle to close enterprise deals, pass procurement reviews, or enter regulated markets.</p>
+            </div>
+            <div class="fp-grid-3">
+                <div class="fp-card">
+                    <div class="fp-card-icon blue">&#x1F6E1;</div>
+                    <h3>Runtime Compliance</h3>
+                    <p>Block non-compliant AI actions at runtime. HIPAA, GDPR, EU AI Act, SOX, APPI &mdash; enforced automatically, not reviewed after the fact.</p>
+                </div>
+                <div class="fp-card">
+                    <div class="fp-card-icon purple">&#x1F4CB;</div>
+                    <h3>Audit-Ready Evidence</h3>
+                    <p>Every AI decision logged with tamper-proof hash chains. Generate evidence packs and compliance reports when enterprise customers ask.</p>
+                </div>
+                <div class="fp-card">
+                    <div class="fp-card-icon green">&#x2705;</div>
+                    <h3>Enterprise Trust Signal</h3>
+                    <p>Show prospective customers that your AI product is controllable, auditable, and safe. Close enterprise deals faster with built-in trust infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="fp-section" id="benefits">
+        <div class="fp-container">
+            <span class="section-label">What You Get</span>
+            <h2 class="fp-section-title">Full product access. Zero cost for 6 months.</h2>
+            <p class="fp-section-sub">Everything an early AI team needs to become enterprise-ready.</p>
+            <div class="fp-scope">
+                <div class="fp-scope-col">
+                    <h3><span style="color:#4ade80">&#x2713;</span> Included</h3>
+                    <ul class="fp-scope-list included">
+                        <li>Runtime compliance engine (4,004 rules, 6 jurisdictions)</li>
+                        <li>Policy evaluation &amp; rule engine</li>
+                        <li>Real-time PII detection</li>
+                        <li>Audit logging with tamper-proof hash chains</li>
+                        <li>Evidence pack &amp; compliance report generation</li>
+                        <li>Enterprise Dashboard access</li>
+                        <li>Python SDK + JS/TS SDK</li>
+                        <li>Chrome Extension</li>
+                        <li>CI/CD compliance testing CLI</li>
+                        <li>Pre-built policy packs (HIPAA, GDPR, EU AI Act, etc.)</li>
+                        <li>Community support &amp; office hours</li>
+                        <li>BYOK (Bring Your Own Key) for LLM deep analysis</li>
+                    </ul>
+                </div>
+                <div class="fp-scope-col">
+                    <h3><span style="color:#555">&mdash;</span> Not Included</h3>
+                    <ul class="fp-scope-list excluded">
+                        <li>Enterprise SLA or dedicated support</li>
+                        <li>On-premise / VPC deployment</li>
+                        <li>Custom legal policy packs</li>
+                        <li>White-glove consulting or integration</li>
+                        <li>Unlimited usage (fair use caps apply)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility -->
+    <section class="fp-section alt-bg" id="eligibility">
+        <div class="fp-container">
+            <span class="section-label">Eligibility</span>
+            <h2 class="fp-section-title">Who can apply?</h2>
+            <p class="fp-section-sub">Open to AI startups worldwide. One hard requirement, plus meet at least 2 of the priority criteria.</p>
+            <div class="fp-eligible">
+                <div class="fp-require-box">
+                    <h3><span class="tag tag-required">Required</span> Hard Requirement</h3>
+                    <ul class="fp-require-list">
+                        <li>AI is a core product or service &mdash; not just an internal feature</li>
+                    </ul>
+                </div>
+                <div class="fp-require-box" style="border-color:rgba(139,92,246,.3)">
+                    <h3><span class="tag tag-optional">Meet 2 of 6</span> Priority Criteria</h3>
+                    <ul class="fp-require-list">
+                        <li>Company founded within the last 18 months</li>
+                        <li>Team size under 10 people</li>
+                        <li>Total funding raised under $500K</li>
+                        <li>Pre-revenue or early revenue (MRR under $5K)</li>
+                        <li>Accepted into a recognized accelerator or builder community</li>
+                        <li>Building for enterprise, regulated, or high-trust use cases</li>
+                    </ul>
+                    <p class="fp-require-note">Meeting more criteria increases your chances of acceptance into Tier A (higher-touch support).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="fp-section">
+        <div class="fp-container">
+            <span class="section-label">How It Works</span>
+            <h2 class="fp-section-title">From application to enterprise-ready in 4 steps</h2>
+            <p class="fp-section-sub">Rolling admissions. Apply anytime before July 31, 2026.</p>
+            <div class="fp-steps">
+                <div class="fp-step">
+                    <h3>Apply</h3>
+                    <p>Fill out the application form. Takes about 5 minutes. We review applications on a rolling basis.</p>
+                </div>
+                <div class="fp-step">
+                    <h3>Get Accepted</h3>
+                    <p>Qualified teams receive API credentials, dashboard access, and onboarding materials within 48 hours.</p>
+                </div>
+                <div class="fp-step">
+                    <h3>Integrate</h3>
+                    <p>Add LogionOS to your AI product with a single API call. Use our SDKs, CLI, or Chrome Extension.</p>
+                </div>
+                <div class="fp-step">
+                    <h3>Ship with Confidence</h3>
+                    <p>Go to market with built-in compliance, audit trails, and safety controls. Win enterprise customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Voice / Quote -->
+    <section class="fp-section alt-bg" style="text-align:center">
+        <div class="fp-container" style="max-width:700px">
+            <div style="font-size:3rem;margin-bottom:1.5rem;opacity:.3">&ldquo;</div>
+            <p style="font-size:1.25rem;font-weight:500;line-height:1.8;margin-bottom:1.5rem">While spending time in Silicon Valley, I realized something important: the most ambitious AI founders are moving fast, but very few of them can afford to build trust, compliance, and control from day one. We want to help change that.</p>
+            <p style="color:var(--text-secondary);font-size:.9rem"><strong style="color:var(--text)">Chris</strong> &mdash; CEO &amp; Co-Founder, LogionOS</p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="fp-section" id="faq">
+        <div class="fp-container" style="max-width:800px">
+            <div style="text-align:center;margin-bottom:3rem">
+                <span class="section-label">FAQ</span>
+                <h2 class="fp-section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Is this really free? What&rsquo;s the catch?</summary>
+                    <div class="faq-answer">
+                        <p>Yes, it&rsquo;s genuinely free for 6 months. No credit card required. In exchange, we ask for product feedback, usage data (aggregated and anonymized), and the opportunity to share your story as a case study (with your permission). After 6 months, you can continue on a paid plan or export your data.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>What happens after the 6-month free period?</summary>
+                    <div class="faq-answer">
+                        <p>You&rsquo;ll have the option to continue on a paid plan (with a founder discount), or you can export your audit logs and compliance data. There is no lock-in and no surprise charges.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>I&rsquo;m building a consumer AI product. Can I still apply?</summary>
+                    <div class="faq-answer">
+                        <p>Yes, as long as AI is your core product. However, teams building for enterprise, regulated, or high-trust use cases will be prioritized. Consumer AI products that handle personal data, health data, or financial data are also a great fit.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I use my own LLM API keys for deep compliance analysis?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. Our BYOK (Bring Your Own Key) feature lets you connect your own OpenAI, Anthropic, or other LLM API keys for deeper compliance analysis. The core rule engine runs without any LLM dependency.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>What jurisdictions and regulations do you cover?</summary>
+                    <div class="faq-answer">
+                        <p>LogionOS covers 4,004 compiled regulations across 6 jurisdictions: US (HIPAA, SOX, state privacy laws), EU (GDPR, EU AI Act), Japan (APPI), UK, Singapore, and Hong Kong. Pre-built policy packs are available for HIPAA, GDPR, EU AI Act, SOX, APPI, and more.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>How long does it take to integrate?</summary>
+                    <div class="faq-answer">
+                        <p>Most teams integrate LogionOS in under 30 minutes. It&rsquo;s a single API call with our Python or JS/TS SDK. No infrastructure changes needed &mdash; just add a compliance check before your AI outputs reach users.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is my data safe? What data does LogionOS collect?</summary>
+                    <div class="faq-answer">
+                        <p>Your data stays yours. LogionOS processes compliance checks in real-time and stores audit logs. We only use aggregated, anonymized data to improve our models. Detailed data rights and privacy terms are provided in the program agreement. We do not sell or share your data with third parties.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>I&rsquo;m not based in the US. Can I still apply?</summary>
+                    <div class="faq-answer">
+                        <p>Absolutely. This is a global program. We welcome teams from any country. Our platform supports regulations across 6 jurisdictions, and our team speaks English, Chinese, and Japanese.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apply CTA -->
+    <section class="fp-cta-section" id="apply">
+        <div style="max-width:600px;margin:0 auto">
+            <span class="section-label">Batch 01</span>
+            <h2>Ready to become enterprise-ready?</h2>
+            <p>Apply in 5 minutes. Rolling admissions. We review every application personally.</p>
+            <div class="fp-actions">
+                <a href="https://tally.so/r/logionos-founders" target="_blank" class="btn-primary" style="font-size:1.05rem;padding:1rem 2rem">
+                    Apply Now &mdash; It&rsquo;s Free
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+            </div>
+            <p class="fp-deadline">Batch 01 deadline: <strong>July 31, 2026</strong> &middot; Up to 500 selected teams</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px">
+                            <rect width="40" height="40" rx="6" fill="#000"/>
+                            <path d="M20 12 C20 12, 15 14, 13 20 C11 26, 14 31, 20 31" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                            <path d="M28 20 C28 20, 26 15, 20 13 C14 11, 9 14, 9 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                            <path d="M20 28 C20 28, 25 26, 27 20 C29 14, 26 9, 20 9" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                            <path d="M12 20 C12 20, 14 25, 20 27 C26 29, 31 26, 31 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                        LogionOS
+                    </div>
+                    <p>AI Compliance Platform for Enterprise LLMs</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="index.html#products">Products</a>
+                    <a href="shield.html">Shield for OpenClaw</a>
+                    <a href="https://logionos-dashboard.vercel.app" target="_blank">Dashboard</a>
+                    <a href="pricing.html">Pricing</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="docs.html">Documentation</a>
+                    <a href="https://logionos-api.onrender.com/docs" target="_blank">API Reference</a>
+                    <a href="https://github.com/LogionOS/logionos-python" target="_blank">Python SDK</a>
+                    <a href="https://github.com/LogionOS/logionos-js" target="_blank">JS/TS SDK</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="founders.html">Founder Program</a>
+                    <a href="https://github.com/LogionOS" target="_blank">GitHub</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="mailto:chris@logionos.com">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 LogionOS Inc. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
