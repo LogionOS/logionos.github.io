@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogionOS — Service Level Agreement</title>
+  <style>
+    :root { --bg: #0a0a0a; --card: #111; --border: #222; --text: #e0e0e0; --muted: #888; --accent: #6366f1; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 800px; margin: 0 auto; padding: 60px 24px; }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); margin-bottom: 40px; }
+    h2 { font-size: 1.25rem; font-weight: 600; margin: 32px 0 12px; color: #fff; }
+    h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 8px; }
+    p, li { font-size: 0.95rem; color: var(--text); margin-bottom: 12px; }
+    ul, ol { padding-left: 24px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th, td { text-align: left; padding: 10px 14px; border: 1px solid var(--border); font-size: 0.9rem; }
+    th { background: var(--card); color: #fff; font-weight: 600; }
+    .highlight { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+    .tier-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 12px 0; }
+    .tier-card h3 { margin-top: 0; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .badge-free { background: #1e293b; color: #94a3b8; }
+    .badge-pro { background: #312e81; color: #a5b4fc; }
+    .badge-ent { background: #422006; color: #fbbf24; }
+    .footer { border-top: 1px solid var(--border); margin-top: 60px; padding-top: 24px; color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Service Level Agreement (SLA)</h1>
+    <p class="subtitle">Last updated: April 13, 2026 · Applies to all paid LogionOS service tiers</p>
+
+    <h2>1. Service Description</h2>
+    <p>LogionOS provides a real-time AI compliance checking API that evaluates AI model inputs and outputs against regulatory frameworks (GDPR, CCPA, HIPAA, EU AI Act, APPI, SOX, PCI-DSS, and others). This SLA covers the availability and performance of the LogionOS API ("Service").</p>
+
+    <h2>2. Service Tiers & Commitments</h2>
+
+    <table>
+      <tr>
+        <th>Metric</th>
+        <th>Founder Program</th>
+        <th>Pro</th>
+        <th>Enterprise</th>
+      </tr>
+      <tr>
+        <td>Monthly Uptime Target</td>
+        <td>Best effort</td>
+        <td>99.5%</td>
+        <td>99.9%</td>
+      </tr>
+      <tr>
+        <td>API Response (P95)</td>
+        <td>—</td>
+        <td>&lt; 500ms</td>
+        <td>&lt; 200ms</td>
+      </tr>
+      <tr>
+        <td>Support Response</td>
+        <td>Community / async</td>
+        <td>&lt; 24h (business)</td>
+        <td>&lt; 4h (critical), &lt; 8h (high)</td>
+      </tr>
+      <tr>
+        <td>Data Retention</td>
+        <td>90 days</td>
+        <td>1 year</td>
+        <td>Custom</td>
+      </tr>
+      <tr>
+        <td>Rate Limit</td>
+        <td>100 RPM</td>
+        <td>500 RPM</td>
+        <td>Custom</td>
+      </tr>
+      <tr>
+        <td>SLA Credits</td>
+        <td>None</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+    </table>
+
+    <h2>3. Uptime Calculation</h2>
+    <p><strong>Monthly Uptime Percentage</strong> = (Total Minutes in Month − Downtime Minutes) ÷ Total Minutes in Month × 100</p>
+    <div class="highlight">
+      <p><strong>Downtime</strong> is defined as any period of 5 or more consecutive minutes during which the <code>/v1/status</code> endpoint returns a non-200 response or is unreachable, as measured by LogionOS's external monitoring.</p>
+    </div>
+
+    <h3>Exclusions</h3>
+    <ul>
+      <li>Scheduled maintenance (announced 72 hours in advance via status page and email).</li>
+      <li>Force majeure events.</li>
+      <li>Issues caused by Customer's code, network, or infrastructure.</li>
+      <li>DNS propagation or third-party provider outages beyond LogionOS's control.</li>
+    </ul>
+
+    <h2>4. Service Credits</h2>
+    <table>
+      <tr><th>Monthly Uptime</th><th>Service Credit (% of monthly fee)</th></tr>
+      <tr><td>&lt; 99.9% but ≥ 99.0%</td><td>10%</td></tr>
+      <tr><td>&lt; 99.0% but ≥ 95.0%</td><td>25%</td></tr>
+      <tr><td>&lt; 95.0%</td><td>50%</td></tr>
+    </table>
+    <p>Service credits must be requested within 30 days of the incident. Credits are applied to the next billing cycle and do not exceed 50% of the monthly fee. Credits are the sole and exclusive remedy for downtime.</p>
+
+    <h2>5. Support Tiers</h2>
+    <table>
+      <tr><th>Severity</th><th>Definition</th><th>Enterprise Response</th><th>Pro Response</th></tr>
+      <tr><td>P1 — Critical</td><td>Service completely unavailable or data breach</td><td>&lt; 1 hour</td><td>&lt; 4 hours</td></tr>
+      <tr><td>P2 — High</td><td>Major feature degraded, no workaround</td><td>&lt; 4 hours</td><td>&lt; 24 hours</td></tr>
+      <tr><td>P3 — Medium</td><td>Feature partially impacted, workaround available</td><td>&lt; 8 hours</td><td>&lt; 48 hours</td></tr>
+      <tr><td>P4 — Low</td><td>Questions, feature requests, minor issues</td><td>&lt; 24 hours</td><td>&lt; 5 business days</td></tr>
+    </table>
+
+    <h2>6. Support Channels</h2>
+    <ul>
+      <li><strong>Founder Program</strong>: GitHub Issues, community Discord, async email.</li>
+      <li><strong>Pro</strong>: Email (support@logionos.com), Dashboard ticket system.</li>
+      <li><strong>Enterprise</strong>: Dedicated Slack channel, phone support, named account manager.</li>
+    </ul>
+
+    <h2>7. Maintenance Windows</h2>
+    <ul>
+      <li><strong>Scheduled</strong>: Saturdays 06:00–10:00 UTC (preferred). 72-hour notice.</li>
+      <li><strong>Emergency</strong>: Security patches may be deployed without notice; Customer notified within 1 hour.</li>
+      <li><strong>Zero-downtime deploys</strong>: Most updates use rolling deployment with no user-visible interruption.</li>
+    </ul>
+
+    <h2>8. Monitoring & Transparency</h2>
+    <ul>
+      <li>Public status page: <code>/v1/status</code> (no authentication required).</li>
+      <li>Incident postmortems published within 5 business days for P1/P2 events.</li>
+      <li>Monthly uptime reports available to Enterprise customers upon request.</li>
+    </ul>
+
+    <h2>9. Performance Benchmarks</h2>
+    <table>
+      <tr><th>Path</th><th>Description</th><th>P50</th><th>P95</th><th>P99</th></tr>
+      <tr><td>Fast Path</td><td>Simple PASS/BLOCK</td><td>&lt; 2ms</td><td>&lt; 5ms</td><td>&lt; 10ms</td></tr>
+      <tr><td>Medium Path</td><td>TF-IDF retrieval + mock judge</td><td>&lt; 50ms</td><td>&lt; 150ms</td><td>&lt; 300ms</td></tr>
+      <tr><td>Deep Path</td><td>Embedding retrieval + LLM judge</td><td>&lt; 800ms</td><td>&lt; 2s</td><td>&lt; 5s</td></tr>
+    </table>
+
+    <h2>10. Changes to This SLA</h2>
+    <p>LogionOS may update this SLA with 30 days' written notice. Changes that materially reduce service levels will not apply to existing Enterprise contracts until renewal.</p>
+
+    <div class="highlight">
+      <p><strong>Questions?</strong> Contact us at <a href="mailto:support@logionos.com" style="color: var(--accent);">support@logionos.com</a> or reach out to your account manager.</p>
+    </div>
+
+    <div class="footer">
+      <p>LogionOS, Inc. · Service Level Agreement v1.0 · Effective April 2026</p>
+    </div>
+  </div>
+</body>
+</html>
