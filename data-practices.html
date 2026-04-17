@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Practices — LogionOS</title>
+    <meta name="description" content="How LogionOS handles customer data: flows, storage, LLM handling, telemetry, and integration modes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-content { max-width: 780px; margin: 0 auto; padding: 9rem 2rem 5rem; }
+        .legal-content h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -.03em; margin-bottom: .5rem; }
+        .legal-meta { font-size: .875rem; color: var(--text-secondary); margin-bottom: 3rem; }
+        .legal-content h2 { font-size: 1.35rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .75rem; letter-spacing: -.02em; }
+        .legal-content h3 { font-size: 1.05rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: .5rem; }
+        .legal-content p, .legal-content li { font-size: .95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: .75rem; }
+        .legal-content ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        .legal-content li { margin-bottom: .4rem; }
+        .legal-content a { color: var(--accent-light); text-decoration: underline; }
+        .legal-content table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+        .legal-content th, .legal-content td { text-align: left; padding: .6rem .8rem; border: 1px solid var(--border); font-size: .875rem; color: var(--text-secondary); }
+        .legal-content th { background: var(--bg-card); color: var(--text); font-weight: 600; }
+        .data-flow-diagram {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: .72rem;
+            line-height: 1.55;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1.35rem;
+            margin: 1.25rem 0 1.75rem;
+            overflow-x: auto;
+            color: var(--text-secondary);
+            white-space: pre;
+        }
+        @media (min-width: 640px) {
+            .data-flow-diagram { font-size: .78rem; padding: 1.35rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="6" fill="#000"/>
+                        <path d="M20 12 C20 12, 15 14, 13 20 C11 26, 14 31, 20 31" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M28 20 C28 20, 26 15, 20 13 C14 11, 9 14, 9 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M20 28 C20 28, 25 26, 27 20 C29 14, 26 9, 20 9" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M12 20 C12 20, 14 25, 20 27 C26 29, 31 26, 31 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </span>
+                LogionOS
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#platform">Platform</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="https://logionos-dashboard.vercel.app" target="_blank" class="nav-cta">Dashboard</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="legal-content">
+        <h1>Data Practices</h1>
+        <p class="legal-meta">Last updated: April 15, 2026 &middot; Technical overview for security and compliance teams</p>
+
+        <p>This document describes how LogionOS processes customer data when you use the compliance API, proxy, SDKs, and related integrations. It complements our <a href="privacy.html">Privacy Policy</a> with implementation-level detail. For contractual terms, see our <a href="terms.html">Terms of Service</a> and, where applicable, your Data Processing Agreement (DPA).</p>
+
+        <h2>1. Data flow overview</h2>
+        <p>When your application sends a request through LogionOS (for example via the REST API, an SDK, middleware, or the hosted proxy), the full query text is used in memory to run the compliance engine and produce a result for your app. Persistent records on LogionOS infrastructure use a one-way fingerprint of the query—not the raw query text—alongside compliance outcomes and audit metadata, as described in Section 3.</p>
+        <p>Optional paths (such as BYOK AI Judge or opt-in telemetry) only apply when you explicitly enable them.</p>
+
+        <figure aria-label="High-level data flow">
+            <pre class="data-flow-diagram">Your AI App  →  LogionOS Proxy / SDK  →  Compliance Engine  →  Result
+                                          │
+                                          ▼
+                                   Audit Log (hash only)
+                                          │
+                                          ▼ (opt-in)
+                                   Anonymized Telemetry</pre>
+        </figure>
+
+        <h2>2. What we receive</h2>
+        <p>For a typical compliance check, we receive and process:</p>
+        <ul>
+            <li><strong>Query text</strong> — The prompt or content you submit for analysis (in transit and in volatile memory during evaluation).</li>
+            <li><strong>Jurisdiction</strong> — The legal or policy context you select (for example region or rule pack identifier).</li>
+            <li><strong>Metadata</strong> — Technical fields needed to operate the service, such as API authentication, request timestamps, correlation identifiers, client version, and error diagnostics where applicable.</li>
+        </ul>
+
+        <h2>3. What we store</h2>
+        <p>Our audit and reporting layer is designed to avoid retaining reversible query content. Stored artifacts include:</p>
+        <ul>
+            <li><strong><code>query_hash</code></strong> — SHA-256 hash of the query; we persist only the <strong>first 16 hexadecimal characters</strong> as a stable, non-reversible fingerprint for deduplication and audit correlation.</li>
+            <li><strong>Compliance results</strong> — Structured outputs such as matched rules, risk scores, recommended actions, and similar fields returned to your integration.</li>
+            <li><strong>Audit metadata</strong> — Timestamps, account or workspace identifiers, API route, jurisdiction selection, and related operational fields required for compliance reporting and support.</li>
+        </ul>
+        <p><strong>We do not store the full query text</strong> in this audit store. Raw query content exists only for the duration needed to compute the result unless a separate optional feature (see Section 4) sends it to your own provider.</p>
+
+        <h2>4. What we send to LLMs</h2>
+        <p>LogionOS does not route your query to a large language model for the core compliance engine unless you enable <strong>BYOK (“bring your own key”) AI Judge</strong> or an equivalent customer-configured integration.</p>
+        <p>When BYOK AI Judge is <strong>active</strong>, the <strong>full query</strong> may be sent <strong>only</strong> to the <strong>LLM endpoint you configure</strong> (your own API keys and vendor relationship). You remain the data controller for that transmission; LogionOS acts as directed by your configuration. If BYOK is off, query text is not sent to third-party LLM providers by LogionOS for that purpose.</p>
+
+        <h2>5. Opt-in compliance intelligence</h2>
+        <p>We may offer <strong>anonymized telemetry</strong> to improve models and rule quality—for example aggregate signal about false positives or coverage gaps. Any use of request-derived signal for model training or product analytics beyond essential service operation is <strong>opt-in only</strong>, with clear consent in the product or contract. You can withdraw consent according to the controls we provide for your workspace.</p>
+
+        <h2>6. What we never do</h2>
+        <ul>
+            <li>We <strong>do not sell</strong> customer data or compliance content.</li>
+            <li>We <strong>do not share</strong> your compliance queries or results with unrelated third parties for their own purposes.</li>
+            <li>We <strong>do not store raw PII values</strong> as part of the compliance audit fingerprint model described above; your applications should avoid sending unnecessary personal data in prompts, and should follow your own minimization policies.</li>
+        </ul>
+
+        <h2>7. Integration modes</h2>
+        <p>Data enters LogionOS through different integration surfaces; the storage and LLM rules in Sections 2–5 apply consistently once a request reaches our compliance engine.</p>
+        <table>
+            <tr><th>Mode</th><th>What typically flows in</th><th>Notes</th></tr>
+            <tr><td>REST API</td><td>Query text, jurisdiction, headers (auth), JSON metadata</td><td>Direct HTTPS; same audit hash and result storage model.</td></tr>
+            <tr><td>SDK (Python / JS·TS)</td><td>Same payload fields as the API; wrapped by library</td><td>Credentials stay on your side except API keys you configure for LogionOS.</td></tr>
+            <tr><td>Middleware</td><td>Intercepted request body or derived prompt text from your stack</td><td>Your server forwards to LogionOS; you control logging upstream.</td></tr>
+            <tr><td>Proxy</td><td>Traffic mirrored or forwarded from your AI app through LogionOS edge</td><td>Path depends on deployment; TLS terminates per your architecture.</td></tr>
+        </table>
+
+        <h2>8. Enterprise options</h2>
+        <ul>
+            <li><strong>On-premises deployment</strong> — Run the compliance stack inside your environment so query text, hashes, and audit data remain under your infrastructure and policies.</li>
+            <li><strong>Custom DPA</strong> — We can align subprocessors, regions, retention, and security exhibits with your procurement and legal requirements. Contact us to execute an enterprise agreement.</li>
+        </ul>
+        <p>For questions about this document or your deployment, email <a href="mailto:chris@logionos.com">chris@logionos.com</a>.</p>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px">
+                            <rect width="40" height="40" rx="6" fill="#000"/>
+                            <path d="M20 12 C20 12, 15 14, 13 20 C11 26, 14 31, 20 31" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                            <path d="M28 20 C28 20, 26 15, 20 13 C14 11, 9 14, 9 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                            <path d="M20 28 C20 28, 25 26, 27 20 C29 14, 26 9, 20 9" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                            <path d="M12 20 C12 20, 14 25, 20 27 C26 29, 31 26, 31 20" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                        LogionOS
+                    </div>
+                    <p>AI Compliance Operating System</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="index.html#products">Products</a>
+                    <a href="https://logionos-dashboard.vercel.app" target="_blank">Dashboard</a>
+                    <a href="https://github.com/LogionOS/LogionOS-Extension" target="_blank">Chrome Extension</a>
+                    <a href="pricing.html">Pricing</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="docs.html">Documentation</a>
+                    <a href="https://logionos-api.onrender.com/docs" target="_blank">API Reference</a>
+                    <a href="https://github.com/LogionOS/logionos-python" target="_blank">Python SDK</a>
+                    <a href="https://github.com/LogionOS/logionos-js" target="_blank">JS/TS SDK</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="https://github.com/LogionOS" target="_blank">GitHub</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="data-practices.html">Data Practices</a>
+                    <a href="mailto:chris@logionos.com">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 LogionOS Inc. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('hamburger')?.addEventListener('click', () => {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

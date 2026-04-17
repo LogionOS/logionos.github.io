@@ -101,9 +101,19 @@
             <tr><td>Improve service quality and accuracy</td><td>Legitimate interest</td></tr>
             <tr><td>Send service notifications and updates</td><td>Performance of contract</td></tr>
             <tr><td>Comply with legal obligations</td><td>Legal obligation</td></tr>
+            <tr><td>Train and improve compliance detection models (opt-in only)</td><td>Consent</td></tr>
         </table>
 
-        <p><strong>We do NOT use your compliance query data to train machine learning models.</strong> Your submitted content is processed in real-time for compliance analysis and stored only as part of your audit logs.</p>
+        <h3>2.1 Machine Learning and Compliance Intelligence</h3>
+        <p>By default, LogionOS does <strong>not</strong> use your compliance query content to train machine learning models. Your submitted content is processed in real-time for compliance analysis and stored only as part of your audit logs (as cryptographic hashes, not raw text).</p>
+        <p><strong>Opt-In Compliance Intelligence:</strong> You may choose to participate in our Compliance Intelligence program, which uses anonymized and de-identified compliance telemetry to improve our detection models. If you opt in:</p>
+        <ul>
+            <li>Query content undergoes automated PII removal and anonymization before processing</li>
+            <li>Only compliance-relevant patterns (e.g., regulation matches, risk classifications) are retained</li>
+            <li>Your data is aggregated with other participants — individual queries are never identifiable</li>
+            <li>You may opt out at any time via Dashboard settings; previously contributed data remains anonymized in aggregate datasets</li>
+        </ul>
+        <p>Founder Program participants are encouraged to opt in as part of the program's value exchange. Enterprise customers on dedicated plans may negotiate custom data handling terms.</p>
 
         <h2>3. Data Retention</h2>
         <ul>
@@ -256,6 +266,7 @@
                     <a href="https://github.com/LogionOS" target="_blank">GitHub</a>
                     <a href="terms.html">Terms of Service</a>
                     <a href="privacy.html">Privacy Policy</a>
+                    <a href="data-practices.html">Data Practices</a>
                     <a href="mailto:chris@logionos.com">Contact</a>
                 </div>
             </div>
