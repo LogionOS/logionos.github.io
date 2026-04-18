@@ -66,9 +66,24 @@ BANNED_PATTERNS: list[tuple[str, re.Pattern[str], str]] = [
         r"\bcreator\s+shield\b(?!.*(?:is\s+(?:a\s+)?banned|explicitly\s+banned|is\s+not))",
         re.I),
      "'Creator Shield' is explicitly banned as an external brand."),
+    ("tamper_proof", re.compile(r"\btamper[-\s]?proof\b", re.I),
+     "Use 'tamper-evident' instead of 'tamper-proof'. Hash chains are "
+     "tamper-evident, not tamper-proof (see SECURITY_REMEDIATION_PLAN P1-8)."),
+    ("immutable_audit", re.compile(r"\bimmutable\s+audit\b", re.I),
+     "Use 'hash-chained' or 'tamper-evident' instead of 'immutable audit'. "
+     "Receipts and logs are hash-chained, not strictly immutable."),
+    ("legally_binding", re.compile(r"\blegally\s+binding\b", re.I),
+     "Do not describe our outputs as 'legally binding'. They are evidence "
+     "of what the system showed; binding legal effect is a court determination."),
+    ("hipaa_compliant", re.compile(
+        r"\bHIPAA[-\s]?(?:compliant|compliance|ready)\b(?!.*(?:is\s+not|not\s+a|not\s+HIPAA|not\s+certified|separate|banned|disclaimer))",
+        re.I),
+     "Do NOT claim 'HIPAA compliant' / 'HIPAA ready' for Creator Risk "
+     "Layer. HIPAA-mode is a separate product line (see "
+     "SECURITY_REMEDIATION_PLAN HIPAA section)."),
 ]
 
-NEGATION_WINDOW = 80
+NEGATION_WINDOW = 200
 NEGATORS = re.compile(
     r"\b(?:not|no|never|without|avoid|do\s+not|does\s+not|doesn[' ]t|"
     r"don[' ]t|cannot|can[' ]t|NOT)\b",
@@ -77,7 +92,8 @@ NEGATORS = re.compile(
 BOUNDARY_DESCRIPTORS = re.compile(
     r"\b(?:banned|forbidden|prohibited|disallowed|allowlist|banned_term|"
     r"banned_id|BANNED_PATTERNS|disclaimer|boundary|explicitly\s+banned|"
-    r"product\s+boundary)\b",
+    r"product\s+boundary|carve[-\s]out|remediation|security\s+plan|"
+    r"SECURITY_REMEDIATION_PLAN)\b",
     re.I,
 )
 
@@ -112,6 +128,8 @@ ALLOWLIST_PATTERNS = [
     ".github/workflows/banned-terms.yml",
     "docs/creator-risk-layer-spec.md",
     "docs/creator-risk-layer-design-decisions.md",
+    "docs/SECURITY_REMEDIATION_PLAN.md",
+    "SECURITY_REMEDIATION_PLAN.md",
     "regulations/",
     "tests/",
     "scripts/",
