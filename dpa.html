@@ -26,7 +26,7 @@
 <body>
   <div class="container">
     <h1>Data Processing Agreement (DPA)</h1>
-    <p class="subtitle">Last updated: April 13, 2026 · Effective for all LogionOS service agreements</p>
+    <p class="subtitle">Last updated: April 18, 2026 · Effective for all LogionOS service agreements</p>
 
     <h2>1. Parties</h2>
     <p>This Data Processing Agreement ("DPA") is entered into between:</p>
@@ -109,7 +109,37 @@
       <li>Upon termination: all Customer data deleted within 30 days, with certification upon request.</li>
     </ul>
 
-    <h2>11. Governing Law</h2>
+    <h2>11. Creator Risk Layer — Team Tier Addendum</h2>
+    <p>This Section 11 applies only to Customers subscribed to the LogionOS for Creators "Team" tier or higher. It supplements Sections 1-10 of this DPA.</p>
+
+    <h3>11.1 Scope of Processing</h3>
+    <p>When Customer's authorized users run <code>/v1/creator-check</code> calls through the LogionOS Chrome extension or the Dashboard, LogionOS processes the following Personal Data on Customer's instructions:</p>
+    <ul>
+      <li>Authenticated user identifier (email address, Clerk user ID).</li>
+      <li>The team membership record linking the user to the Customer's team.</li>
+      <li>The hash of the check payload (not the raw text by default) and the metadata of each check (action_type, target_venues, fired rule IDs, safety_status, timing).</li>
+      <li>Session receipt entries (J4) chained by SHA-256, retained per Section 3.1 of the <a href="privacy.html" style="color: var(--accent);">Privacy Policy</a> for the Team tier.</li>
+      <li>Usage counters (monthly check count per user and per team).</li>
+    </ul>
+
+    <h3>11.2 Shared Workspace Processing</h3>
+    <p>Team-tier customers explicitly authorize LogionOS to make session receipts and usage counters visible to all members of the same team, subject to the role-based access controls configured in the Dashboard. Where a team member creates a receipt, other members of the same team are not data subjects in a controller-to-controller relationship; they are additional authorized viewers under Customer's control.</p>
+
+    <h3>11.3 Stripe & Clerk Subprocessors</h3>
+    <p>LogionOS uses the following subprocessors for Creator Risk Layer Team tier, in addition to those disclosed in Section 6 of this DPA:</p>
+    <ul>
+      <li><strong>Stripe, Inc.</strong> — subscription billing, Stripe Billing Portal, webhook delivery. Processes billing contact details and payment method metadata. Storage: US.</li>
+      <li><strong>Clerk, Inc.</strong> — identity and authentication for the Dashboard (magic-link sign-in, session tokens, user directory). Processes email addresses and session metadata. Storage: US.</li>
+    </ul>
+    <p>LogionOS ensures that each subprocessor has executed a data processing agreement and appropriate safeguards (including Standard Contractual Clauses where required) prior to Personal Data being transferred.</p>
+
+    <h3>11.4 No Legal Determinations</h3>
+    <p>LogionOS does not make, and the Customer does not instruct LogionOS to make, any legal determinations about Customer's content. All data processed by the Creator Risk Layer is processed for risk-signaling and workflow-guidance purposes only, as defined in Section 9 of the <a href="terms.html" style="color: var(--accent);">Terms of Service</a>. The Customer remains solely responsible for the content it publishes and for any compliance decisions it makes based on LogionOS outputs.</p>
+
+    <h3>11.5 Receipt Export &amp; Deletion</h3>
+    <p>Team-tier customers may, at any time, export any session receipt or bundle of receipts through the Dashboard. Upon Customer's request or upon termination of the Team subscription, LogionOS will delete all Creator Risk Layer receipts, usage counters, and telemetry within 30 days. Certification of deletion is available on written request.</p>
+
+    <h2>12. Governing Law</h2>
     <p>This DPA is governed by the laws of the State of Delaware, USA, except where mandatory data protection laws require otherwise (e.g., GDPR).</p>
 
     <div class="highlight">
