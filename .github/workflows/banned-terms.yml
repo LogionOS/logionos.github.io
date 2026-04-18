@@ -1,0 +1,23 @@
+name: Banned Terms Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  banned-terms:
+    name: Product-boundary banned-term scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run banned-terms check
+        run: python tools/check_banned_terms.py --verbose
